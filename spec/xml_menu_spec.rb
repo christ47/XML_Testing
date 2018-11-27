@@ -10,9 +10,7 @@ describe "XML menu" do
     @xml_menu.removing_pound_sign.each do |prices|
       expect(prices.to_f).to be <= 10
     end
-
-    end
-
+  end
 
   it "should have no item with calories over 1000 except for the full breakfast" do
     # Consider children element methods - Remember to step through the data and print out to the command line if you need it
@@ -21,7 +19,10 @@ describe "XML menu" do
 
   it "should have all waffle dishes stating you get two waffles" do
     # Consider children element methods - Remember to step through the data and print out to the command line if you need it
-    pending
+    @menu.get_all_food_items do |food|
+    if food.element_children[0].text.include? 'Waffles'
+      expect(food.element_children[2].text).to include 'Two'
+    end
   end
 
 end
